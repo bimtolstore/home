@@ -138,38 +138,38 @@
     </div>
      <div class="profile-info">
         <h2>DAILY QUEST</h2>
-        <img src="https://i.ibb.co.com/BccwNym/IMG-20240618-103443.jpg" width="320px"></img>
-        <p>❎Belum dikerjakan❎</p>
-        <p><strong>Dikerjakan oleh:</strong> Belum dikerjakan</p>
-        <p><strong>Tanggal:</strong> Hari ini 18 Juni 2024 Belum dikerjakan🙏</p>
+        <img src="https://i.ibb.co.com/CPJTVn1/Screenshot-2024-06-18-10-31-33-948-com-mi-Ho-Yo-Genshin-Impact.jpg" width="320px"></img>
+        <p><strong>Status:</strong> Belum Dikerjakan</p>
+        <p><strong>Dikerjakan oleh:</strong> -</p>
+        <p><strong>Tanggal:</strong> 27 Juni 2024</p>
     </div>
      <div class="profile-info">
         <h2>DAILY RESIN</h2>
-        <img src="https://i.ibb.co.com/BccwNym/IMG-20240618-103443.jpg" width="320px"></img>
-        <p>❎Belum dikerjakan❎</p>
-        <p><strong>Dikerjakan oleh:</strong> Belum dikerjakan</p>
-        <p><strong>Tanggal:</strong> Hari ini 18 Juni 2024 Belum dikerjakan🙏</p>
+        <img src="https://i.ibb.co.com/0hLZ4fX/Screenshot-2024-06-19-13-06-07-579-com-mi-Ho-Yo-Genshin-Impact.jpg" width="320px"></img>
+        <p><strong>Status:</strong> Belum Dikerjakan</p>
+        <p><strong>Dikerjakan oleh:</strong> -</p>
+        <p><strong>Tanggal:</strong> 27 Juni 2024</p>
     </div>
      <div class="profile-info">
         <h2>EKSPEDISI</h2>
-        <img src="https://i.ibb.co.com/BccwNym/IMG-20240618-103443.jpg" width="320px"></img>
-        <p>❎Belum dikerjakan❎</p>
-        <p><strong>Dikerjakan oleh:</strong> Belum dikerjakan</p>
-        <p><strong>Tanggal:</strong> Hari ini 18 Juni 2024 Belum dikerjakan🙏</p>
+        <img src="https://i.ibb.co.com/PwztH4r/Screenshot-2024-06-19-13-06-43-342-com-mi-Ho-Yo-Genshin-Impact.jpg" width="320px"></img>
+        <p><strong>Status:</strong> Belum Dikerjakan</p>
+        <p><strong>Dikerjakan oleh:</strong> -</p>
+        <p><strong>Tanggal:</strong> 27 Juni 2024</p>
     </div>
      <div class="profile-info">
         <h2>EVENT</h2>
-        <img src="https://i.ibb.co.com/BccwNym/IMG-20240618-103443.jpg" width="320px"></img>
-        <p>❎Belum dikerjakan❎</p>
-        <p><strong>Dikerjakan oleh:</strong> Belum dikerjakan</p>
-        <p><strong>Tanggal:</strong> Hari ini 18 Juni 2024 Belum dikerjakan🙏</p>
+        <img src="https://i.ibb.co.com/kHNY54j/Screenshot-2024-06-19-13-05-37-783-com-mi-Ho-Yo-Genshin-Impact.jpg" width="320px"></img>
+        <p><strong>Status:</strong> Belum Dikerjakan</p>
+        <p><strong>Dikerjakan oleh:</strong> -</p>
+        <p><strong>Tanggal:</strong> 27 Juni 2024</p>
     </div>
      <div class="profile-info">
-        <h2>EKSPEDISI</h2>
-        <img src="https://i.ibb.co.com/BccwNym/IMG-20240618-103443.jpg" width="320px"></img>
-        <p>❎Belum dikerjakan❎</p>
-        <p><strong>Dikerjakan oleh:</strong> Belum dikerjakan</p>
-        <p><strong>Tanggal:</strong> Hari ini 18 Juni 2024 Belum dikerjakan🙏</p>
+        <h2>REPUTASI</h2>
+        <img src="https://i.ibb.co.com/XLpKTpT/Screenshot-2024-06-19-13-09-06-155-com-android-chrome.jpg" width="320px"></img>
+        <p><strong>Status:</strong> Belum Dikerjakan</p>
+        <p><strong>Dikerjakan oleh:</strong> -</p>
+        <p><strong>Tanggal:</strong> 27 Juni 2024</p>
     </div>
     <br>
            <p style="font-family: monospace; font-style: italic; text-align: center; font-size: 12px;">&copy; 2024 BiStore. All rights reserved.</p>
@@ -181,6 +181,22 @@
 </a>
 
 <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!isLoggedIn()) {
+                window.location.href = 'login.html'; // Redirect ke halaman login jika tidak ada info login
+            }
+        });
+
+        function isLoggedIn() {
+            // Periksa apakah info login ada di localStorage
+            const userInfo = localStorage.getItem('userInfo');
+            if (userInfo) {
+                const userInfoObj = JSON.parse(userInfo);
+                return userInfoObj.loggedIn === true; // Sesuaikan dengan struktur data Anda
+            }
+            return false;
+        }
+    
     const menuToggle = document.querySelector('.menu-toggle');
     const container = document.querySelector('.container');
     const togglePassword = document.getElementById('togglePassword');
