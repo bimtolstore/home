@@ -259,21 +259,6 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (!isLoggedIn()) {
-            window.location.href = 'index.html'; // Redirect ke halaman login jika tidak ada info login
-        }
-    });
-
-    function isLoggedIn() {
-        // Periksa apakah info login ada di localStorage
-        const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) {
-            const userInfoObj = JSON.parse(userInfo);
-            return userInfoObj.loggedIn === true; // Sesuaikan dengan struktur data Anda
-        }
-        return false;
-    }
     
     const menuToggle = document.querySelector('.menu-toggle');
     const container = document.querySelector('.container');
@@ -297,7 +282,7 @@
         const messageCode = document.getElementById(codeId).textContent.trim();
         const originalMessage = document.getElementById(contentId).textContent.trim();
 
-        // Simpan pesan terkirim ke localStorage
+        // Simpan pesan terkirim ke localStorae
         const sentMessage = {
             code: messageCode,
             original: originalMessage,
