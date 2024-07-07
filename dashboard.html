@@ -238,27 +238,21 @@
 
 <script>
         document.addEventListener('DOMContentLoaded', function() {
-    if (!isLoggedIn()) {
-        window.location.href = 'index.html'; // Redirect ke halaman login jika tidak ada info login
-    }
-
-    // Event listener untuk Shop dan Membership
-    const maintenanceModal = document.getElementById('maintenanceModal');
-    const cancelBtns = document.querySelectorAll('.modal-content .btn.cancel');
-
-    cancelBtns.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
-            event.preventDefault();
-            maintenanceModal.style.display = 'none';
+            if (!isLoggedIn()) {
+                window.location.href = 'index.html'; // Redirect ke halaman login jika tidak ada info login
+            }
         });
-    });
 
-    window.addEventListener('click', (event) => {
-        if (event.target == maintenanceModal) {
-            maintenanceModal.style.display = 'none';
+        function isLoggedIn() {
+            // Periksa apakah info login ada di localStorage
+            const userInfo = localStorage.getItem('userInfo');
+            if (userInfo) {
+                const userInfoObj = JSON.parse(userInfo);
+                return userInfoObj.loggedIn === true; // Sesuaikan dengan struktur data Anda
+            }
+            return false;
         }
-    });
-
+    
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.menu');
 
@@ -268,23 +262,23 @@
 
     // Logout confirmation modal
     const logoutBtn = document.querySelector('.logout-btn');
-    const logoutModal = document.getElementById('logoutModal');
+    const modal = document.getElementById('logoutModal');
+    const cancelBtn = document.querySelector('.modal-content .btn.cancel');
 
     logoutBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        logoutModal.style.display = 'flex';
+        modal.style.display = 'flex';
     });
 
-    cancelBtns.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
-            event.preventDefault();
-            logoutModal.style.display = 'none';
-        });
+    cancelBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        modal.style.display = 'none';
     });
 
+    // Close modal when clicking outside of it
     window.addEventListener('click', (event) => {
-        if (event.target == logoutModal) {
-            logoutModal.style.display = 'none';
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
     });
 
@@ -309,7 +303,6 @@
             event.preventDefault();
         }
     });
-});
 </script>
 
 </body>
