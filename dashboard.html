@@ -191,7 +191,6 @@
             <p>Topup dan Joki yang aman, amanah, cepat, dan legal!!</p>
             <a href="shop.html" class="btn">Buka</a>
         </div>
-    <div class="menu">
         <div class="menu-item">
             <i class="fas fa-spinner"></i>
             <h3>Membership</h3>
@@ -216,6 +215,12 @@
             <p>Keluar dari akun anda yang sekarang</p>
             <a href="#" class="btn logout-btn">Logout</a>
         </div>
+        <div class="menu-item">
+            <i class="fas fa-bell"></i>
+            <h3>Notifikasi</h3>
+            <p>Nyalakan Notifikasi</p>
+            <a href="#" class="btn notification-btn">Nyalakan</a>
+        </div>
     </div>
 </div>
 
@@ -237,22 +242,22 @@
 </div>
 
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!isLoggedIn()) {
-                window.location.href = 'index.html'; // Redirect ke halaman login jika tidak ada info login
-            }
-        });
-
-        function isLoggedIn() {
-            // Periksa apakah info login ada di localStorage
-            const userInfo = localStorage.getItem('userInfo');
-            if (userInfo) {
-                const userInfoObj = JSON.parse(userInfo);
-                return userInfoObj.loggedIn === true; // Sesuaikan dengan struktur data Anda
-            }
-            return false;
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!isLoggedIn()) {
+            window.location.href = 'index.html'; // Redirect ke halaman login jika tidak ada info login
         }
-    
+    });
+
+    function isLoggedIn() {
+        // Periksa apakah info login ada di localStorage
+        const userInfo = localStorage.getItem('userInfo');
+        if (userInfo) {
+            const userInfoObj = JSON.parse(userInfo);
+            return userInfoObj.loggedIn === true; // Sesuaikan dengan struktur data Anda
+        }
+        return false;
+    }
+
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.menu');
 
@@ -303,6 +308,30 @@
             event.preventDefault();
         }
     });
+
+    // Request Notification Permission
+    const notificationBtn = document.querySelector('.notification-btn');
+
+    notificationBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (Notification.permission === 'granted') {
+            showNotification('Notifikasi sudah diaktifkan!');
+        } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    showNotification('Notifikasi diaktifkan!');
+                }
+            });
+        }
+    });
+
+    // Show Notification
+    function showNotification(message) {
+        const notification = new Notification('Pemberitahuan', {
+            body: message,
+            icon: 'path/to/notification-icon.png' // Ganti dengan path icon Anda
+        });
+    }
 </script>
 
 </body>
