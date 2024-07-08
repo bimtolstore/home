@@ -173,6 +173,15 @@
         img {
             pointer-events: none;
         }
+        /* Styles for Music Modal */
+        .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -221,6 +230,12 @@
             <p>Nyalakan Notifikasi</p>
             <a href="#" class="btn notification-btn">Nyalakan</a>
         </div>
+        <div class="menu-item">
+            <i class="fas fa-music"></i>
+            <h3>Setel Musik</h3>
+            <p>Putar dan ganti musik Anda</p>
+            <button class="btn music-btn">Putar</button>
+        </div>
     </div>
 </div>
 
@@ -229,7 +244,7 @@
     <i class="fas fa-headset"></i>
 </a>
 
-<!-- Modal HTML -->
+<!-- Modal untuk Logout -->
 <div id="logoutModal" class="modal">
     <div class="modal-content">
         <h3>Konfirmasi Logout</h3>
@@ -240,6 +255,24 @@
         </div>
     </div>
 </div>
+
+<!-- Modal untuk Setel Musik -->
+<div id="musicModal" class="modal">
+    <div class="modal-content">
+        <h3>Pilih Musik</h3>
+        <select id="musicSelect">
+            <option value="https://www.example.com/music1.mp3">Musik 1</option>
+            <option value="https://www.example.com/music2.mp3">Musik 2</option>
+            <option value="https://www.example.com/music3.mp3">Musik 3</option>
+        </select>
+        <div class="modal-buttons">
+            <button class="btn play-music">Putar</button>
+            <button class="btn cancel">Batal</button>
+        </div>
+    </div>
+</div>
+
+<audio id="audioPlayer" controls style="display: none;"></audio>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -332,6 +365,39 @@
             icon: 'path/to/notification-icon.png' // Ganti dengan path icon Anda
         });
     }
+
+    // Music modal
+    const musicBtn = document.querySelector('.music-btn');
+    const musicModal = document.getElementById('musicModal');
+    const playMusicBtn = document.querySelector('.play-music');
+    const musicSelect = document.getElementById('musicSelect');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const cancelMusicBtn = document.querySelector('#musicModal .btn.cancel');
+
+    musicBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        musicModal.style.display = 'flex';
+    });
+
+    playMusicBtn.addEventListener('click', () => {
+        const selectedMusic = musicSelect.value;
+        audioPlayer.src = selectedMusic;
+        audioPlayer.style.display = 'block';
+        audioPlayer.play();
+        musicModal.style.display = 'none';
+    });
+
+    cancelMusicBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        musicModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', (event) => {
+        if (event.target == musicModal) {
+            musicModal.style.display = 'none';
+        }
+    });
 </script>
 
 </body>
